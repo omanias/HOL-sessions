@@ -9,12 +9,14 @@ import viewsRouter from './routes/views.js';
 
 const app = express();
 
+const PORT = 8080
+
 app.engine('hbs', engine({
     extname: '.hbs',
     defaultLayout: 'main',
 }));
 app.set('view engine', 'hbs');
-app.set('views', '../src/views');
+app.set('views', './src/views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,7 +32,6 @@ app.use(session({
 app.use('/api/sessions', sessionsRouter);
 app.use('/', viewsRouter);
 
-const PORT = 8080;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
